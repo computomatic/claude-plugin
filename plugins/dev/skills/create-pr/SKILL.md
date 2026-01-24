@@ -1,5 +1,5 @@
 ---
-name: creating-pr
+name: create-pr
 description: Creates a GitHub PR for current work. Handles branch creation, committing, pushing, and PR creation.
 argument-hint: [optional: PR description]
 disable-model-invocation: true
@@ -64,7 +64,8 @@ git push -u origin <branch-name>
 
 Create the PR using `gh pr create`:
 - Title: Clear, imperative summary
-- Body: 1-2 paragraphs max describing what and why
+- Body: Plain text, 1-2 paragraphs describing what and why
+- No headers, no "Test Plan" section, no markdown formatting in the body
 - If argument was provided, use it to inform the description
 
 ```
@@ -73,7 +74,8 @@ gh pr create --title "..." --body "..."
 
 ## Guidelines
 
-- Keep PR descriptions concise (1-2 paragraphs)
+- Keep PR descriptions as plain prose (1-2 paragraphs)
+- No headers or sections in the PR body
 - Focus on what changed and why, not how
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
