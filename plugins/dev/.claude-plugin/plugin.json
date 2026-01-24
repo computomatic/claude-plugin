@@ -1,0 +1,4 @@
+{
+  "name": "dev",
+  "description": "Development workflow: lead developer agent, browser testing, PR creation, and commit management"
+}

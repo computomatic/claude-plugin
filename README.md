@@ -1,54 +1,54 @@
-# com - Development Workflow Plugin for Claude Code
+# computomatic - Claude Plugin Marketplace
 
-A Claude Code plugin packaging personal development workflow tools: agents for development and testing, plus skills for git workflows and skill authoring.
+A Claude Code plugin marketplace with development workflow tools used at Computomatic.
 
 ## Installation
 
 ```bash
-# Clone the repository
-git clone <repo-url> claude-plugin
+# Add the marketplace
+/plugin marketplace add computomatic/claude-plugin
 
-# Test locally
-cd claude-plugin
-claude --plugin-dir .
+# Install plugins
+/plugin install dev@computomatic
+/plugin install meta@computomatic
 ```
 
-## Contents
+## Plugins
 
-### Agents
+### dev
 
-**lead-developer** (Opus)
-An elite lead developer agent for implementing features, bug fixes, and refactoring. Follows a systematic process: discovery, planning, implementation, and quality assurance. Automatically invoked for development tasks.
+Development workflow tools:
 
-**browser-test-runner** (Sonnet)
-A manual QA tester agent for verifying application functionality in the browser. Uses chrome-devtools MCP to systematically test user flows, identify issues, and report findings. Automatically invoked for browser testing tasks.
+**Agents:**
 
-### Skills
+- **lead-developer** (Opus) - Elite lead developer for implementing features, bug fixes, and refactoring
+- **browser-test-runner** (Sonnet) - Manual QA tester for verifying application functionality in the browser
 
-**creating-pr** (`/com:creating-pr`)
-Creates a complete GitHub PR from current work: handles branch creation, selective staging, committing, pushing, and PR creation with `gh`.
+**Skills:**
 
-**commit-and-push** (`/com:commit-and-push`)
-Commits and pushes changes with intelligent staging. Reviews conversation context to determine which files are related to current work and stages only those.
+- `/dev:creating-pr` - Creates a complete GitHub PR from current work
+- `/dev:commit-and-push` - Commits and pushes changes with intelligent staging
 
-**create-skill** (`/com:create-skill`)
-Guides creation of new Claude Code skills with best practices. Covers discovery, design, structure, content principles, implementation, and verification.
+### meta
+
+Tools for extending Claude Code:
+
+**Skills:**
+
+- `/meta:create-skill` - Guides creation of new Claude Code skills with best practices
 
 ## Usage
 
-After installation, skills are available with the `com:` prefix:
+After installation, skills are available with plugin prefixes:
 
 ```
-/com:creating-pr
-/com:creating-pr Add OAuth2 support
-/com:commit-and-push
-/com:create-skill my-skill-name
+/dev:creating-pr
+/dev:creating-pr Add OAuth2 support
+/dev:commit-and-push
+/meta:create-skill my-skill-name
 ```
 
 Agents are automatically invoked based on task context:
+
 - Development tasks trigger `lead-developer`
 - Browser testing tasks trigger `browser-test-runner`
-
-## License
-
-MIT

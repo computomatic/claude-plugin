@@ -1,0 +1,16 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "computomatic",
+  "plugins": [
+    {
+      "name": "dev",
+      "description": "Development workflow: lead developer agent, browser testing, PR creation, and commit management",
+      "source": "./plugins/dev"
+    },
+    {
+      "name": "meta",
+      "description": "Plugin authoring tools: skill creation guide and templates",
+      "source": "./plugins/meta"
+    }
+  ]
+}
