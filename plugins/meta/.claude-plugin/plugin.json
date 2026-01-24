@@ -1,7 +1,4 @@
 {
   "name": "meta",
-  "description": "Plugin authoring tools: skill creation guide and templates",
-  "version": "1.0.0",
-  "author": "Toby",
-  "license": "MIT"
+  "description": "Plugin authoring tools: skill creation guide and templates"
 }
