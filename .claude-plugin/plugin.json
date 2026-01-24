@@ -1,0 +1,9 @@
+{
+  "name": "com",
+  "description": "Development workflow tools: lead developer agent, browser testing, PR creation, and skill authoring",
+  "version": "1.0.0",
+  "author": {
+    "name": "Toby"
+  },
+  "license": "MIT"
+}
