@@ -38,6 +38,7 @@ Determine the skill type and structure:
 **Naming:**
 - Lowercase with hyphens
 - Be specific: `formatting-sql` not `sql-stuff`
+- Always include a `name` field in frontmatter -- without it, the skill name is derived from the directory and may be inconsistently prefixed by the plugin name
 
 **Frontmatter Options:**
 ```yaml
@@ -229,6 +230,7 @@ disable-model-invocation: {true if user-controlled}
 
 Before finalizing a skill, verify:
 
+- [ ] Frontmatter includes explicit `name` field
 - [ ] Name uses lowercase with hyphens
 - [ ] Description says WHAT and WHEN
 - [ ] Content is under 500 lines (or uses supporting files)
