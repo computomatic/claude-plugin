@@ -1,5 +1,5 @@
 ---
-name: create-skill
+name: creating-skills
 description: Creates new Claude Code skills with best practices. Use when the user wants to create a skill, add a slash command, or automate a workflow.
 argument-hint: "[skill-name] [optional: description]"
 disable-model-invocation: true
