@@ -1,7 +1,7 @@
 ---
 name: create-skill
 description: Creates new Claude Code skills with best practices. Use when the user wants to create a skill, add a slash command, or automate a workflow.
-argument-hint: [skill-name] [optional: description]
+argument-hint: "[skill-name] [optional: description]"
 disable-model-invocation: true
 ---
 
@@ -36,7 +36,6 @@ Determine the skill type and structure:
 - **Hybrid:** Combines reference material with workflow guidance
 
 **Naming:**
-- Use gerund form (verb ending in -ing): `processing-pdfs`, `reviewing-code`, `creating-diagrams`
 - Lowercase with hyphens
 - Be specific: `formatting-sql` not `sql-stuff`
 
@@ -45,7 +44,7 @@ Determine the skill type and structure:
 ---
 name: skill-name
 description: Does X when Y. Use for Z.
-argument-hint: [required-arg] [optional: arg]
+argument-hint: "[required-arg] [optional: arg]"
 disable-model-invocation: true  # Set true if user should control invocation
 ---
 ```
@@ -189,7 +188,7 @@ If issues arise:
 ---
 name: {skill-name}
 description: {What it does}. Use when {trigger conditions}.
-argument-hint: {[args]}
+argument-hint: "[args]"
 disable-model-invocation: {true if user-controlled}
 ---
 ```
@@ -230,7 +229,7 @@ disable-model-invocation: {true if user-controlled}
 
 Before finalizing a skill, verify:
 
-- [ ] Name uses gerund form with hyphens
+- [ ] Name uses lowercase with hyphens
 - [ ] Description says WHAT and WHEN
 - [ ] Content is under 500 lines (or uses supporting files)
 - [ ] Workflow steps are numbered and clear
@@ -279,7 +278,7 @@ ORDER BY
 ---
 name: reviewing-pull-requests
 description: Reviews pull requests for code quality and correctness. Use when the user asks to review a PR or check code changes.
-argument-hint: [pr-number or branch]
+argument-hint: "[pr-number or branch]"
 ---
 
 # Pull Request Review
