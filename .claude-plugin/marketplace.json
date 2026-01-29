@@ -14,6 +14,11 @@
       "name": "meta",
       "description": "Plugin authoring tools: skill and agent creation guides and templates",
       "source": "./plugins/meta"
+    },
+    {
+      "name": "dev-team",
+      "description": "Autonomous development team with specialized agents for agile software delivery using Kanban-based workflows",
+      "source": "./plugins/dev-team"
     }
   ]
 }
