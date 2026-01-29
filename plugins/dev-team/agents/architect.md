@@ -9,7 +9,7 @@ description: |
   - Create sequence diagrams and system flows
   - Review designs for scalability and maintainability
   Never invoke for implementation work - design only.
-model: sonnet
+model: opus
 color: yellow
 tools: Read, Glob, Grep, Write, Edit
 disallowedTools: Bash
