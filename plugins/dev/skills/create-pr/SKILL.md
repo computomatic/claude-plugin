@@ -3,7 +3,7 @@ name: create-pr
 description: Creates a GitHub PR for current work. Handles branch creation, committing, pushing, and PR creation.
 argument-hint: "[optional: PR description]"
 disable-model-invocation: true
-allowed-tools: Bash(git:*), Bash(gh pr create:*)
+allowed-tools: Bash(git:*), Bash(gh pr create:*), Read, Glob
 ---
 
 # Create Pull Request
@@ -60,13 +60,28 @@ Push the branch to origin:
 git push -u origin <branch-name>
 ```
 
-### Step 5: Create the PR
+### Step 5: Check for PR Template
+
+Search for a PR template in the repository. Check these locations in priority order (filenames are case-insensitive):
+
+1. `.github/pull_request_template.md`
+2. `.github/PULL_REQUEST_TEMPLATE/` (directory with multiple templates)
+3. `docs/pull_request_template.md`
+4. `pull_request_template.md` (repository root)
+
+Use `Glob` to find matching files and `Read` to read the template content.
+
+If `.github/PULL_REQUEST_TEMPLATE/` contains multiple templates, pick the one most relevant to the changes (e.g., a bug fix template for fixes, a feature template for new features). If unsure which template fits, ask the user.
+
+### Step 6: Create the PR
 
 Create the PR using `gh pr create`:
 - Title: Clear, imperative summary
-- Body: Plain text, 1-2 paragraphs describing what and why
-- No headers, no "Test Plan" section, no markdown formatting in the body
 - If argument was provided, use it to inform the description
+
+**If a PR template was found:** Use the template's structure for the body, filling in each section based on the conversation context and the changes being submitted.
+
+**If no PR template was found:** Write a plain text body of 1-2 paragraphs describing what and why. No headers, no "Test Plan" section, no markdown formatting in the body.
 
 ```
 gh pr create --title "..." --body "..."
@@ -74,8 +89,8 @@ gh pr create --title "..." --body "..."
 
 ## Guidelines
 
-- Keep PR descriptions as plain prose (1-2 paragraphs)
-- No headers or sections in the PR body
+- When a PR template is found, respect its structure and fill in all sections
+- When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections
 - Focus on what changed and why, not how
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
