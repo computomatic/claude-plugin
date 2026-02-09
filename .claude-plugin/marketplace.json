@@ -1,5 +1,4 @@
 {
-  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "computomatic",
   "owner": {
     "name": "Computomatic"
@@ -14,6 +13,11 @@
       "name": "meta",
       "description": "Plugin authoring tools: skill and agent creation guides and templates",
       "source": "./plugins/meta"
+    },
+    {
+      "name": "project-blog",
+      "description": "A system for recording and leveraging a project-specific knowledge base.",
+      "source": "./plugins/project-blog"
     }
   ]
 }
