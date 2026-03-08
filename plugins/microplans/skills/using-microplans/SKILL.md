@@ -1,0 +1,79 @@
+---
+name: using-microplans
+description: Reference for the microplan execution pattern. Describes the master plan structure, the plan-question-implement loop, and recovery procedures. Consult this when orchestrating multi-step roadmaps using microplans.
+---
+
+# Using Microplans
+
+The microplan pattern breaks large roadmaps into small, self-contained steps that are planned and executed one at a time. A master plan tracks overall progress and serves as a resilient checkpoint so work can resume after context loss. Each step gets its own microplan document with a detailed implementation plan and outstanding questions, which are resolved with the user before implementation begins.
+
+## The Master Plan
+
+The master plan is the source of truth for the entire roadmap. Create it using plan mode (EnterPlanMode) at the start of a new roadmap. It must be detailed enough that a fresh session with no prior context can pick up where work left off.
+
+Key properties:
+
+- Lives in `.claude/plans/` as a markdown file (e.g., `.claude/plans/master-plan-auth-overhaul.md`)
+- Each step has a status: `pending`, `in-progress`, or `done`
+- Updated after every step completes
+- Contains enough context that reading it alone is sufficient to continue work
+
+## The Loop
+
+Execute the roadmap by repeating this cycle for each step:
+
+1. **Review the master plan.** Read the master plan file. Identify the next `pending` step. Mark it `in-progress`.
+
+2. **Delegate to the microplanner agent.** Pass the agent the full context it needs since it runs in an isolated context window and will not read the master plan itself. Include: the step's title and description from the master plan, any relevant decisions or constraints from prior steps, and an explicit domain role assignment (e.g., "You are planning a database migration step" or "You are planning a frontend accessibility audit"). The domain role helps the agent adopt the right perspective and terminology.
+
+3. **Review the microplan and ask questions.** Read the microplan the agent created. Present the user with each Outstanding Question one at a time. Wait for an answer before moving to the next question.
+
+4. **Incorporate answers.** Once all questions are answered, delegate back to a subagent to update the microplan with the user's answers. The subagent should revise the Implementation Plan to reflect the decisions and clear the answered questions from Outstanding Questions.
+
+5. **Delegate implementation.** Send the finalized microplan to an appropriate implementation agent (e.g., a lead-developer agent). Pass the full microplan content so the agent has everything it needs.
+
+6. **Clean up and update.** Delete the microplan file. Update the master plan: mark the completed step as `done` and note any outcomes or decisions that affect future steps.
+
+7. **Commit and push.** Commit all changes from this step with a clear message referencing the step. Push to the remote.
+
+8. **Loop.** Return to step 1 for the next pending step. If all steps are `done`, the roadmap is complete.
+
+## Master Plan Format
+
+Use this structure when creating a master plan:
+
+```markdown
+# Master Plan: [Project/Feature Name]
+
+## Goal
+
+[2-3 sentences describing the end state this roadmap achieves.]
+
+## Context
+
+[Background information, constraints, and key decisions that apply across all steps.]
+
+## Roadmap
+
+### Step 1: [Title] - `done`
+[Brief description of what this step accomplishes.]
+**Outcome:** [Filled in after completion. Key decisions made, files changed, anything the next step needs to know.]
+
+### Step 2: [Title] - `in-progress`
+[Brief description of what this step accomplishes.]
+
+### Step 3: [Title] - `pending`
+[Brief description of what this step accomplishes.]
+```
+
+## Guidelines
+
+- **Recovery from context loss.** If a session ends mid-work, start the next session by reading the master plan. The `in-progress` step tells you where to pick up. If a microplan file exists for that step, resume from there. If not, re-run the microplanner.
+
+- **Keep steps self-contained.** Each step should produce a working, committable state. Avoid steps that leave the codebase broken or that depend on uncommitted work from a future step.
+
+- **Master plan is the source of truth.** Do not rely on conversation history for roadmap state. Always read the master plan file to determine what has been done and what comes next.
+
+- **Split oversized steps.** If a microplan's Implementation Plan has more than roughly 8-10 sub-steps, consider splitting it into two master plan steps. Update the master plan accordingly before proceeding.
+
+- **Adapt the loop.** The 8-step cycle is a default. If a step is trivial (e.g., a config change), skip the microplanner and implement directly. If a step surfaces new requirements, pause and revise the master plan before continuing.
