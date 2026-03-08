@@ -5,13 +5,13 @@ description: Reference for the microplan document format. Provides structure, na
 
 # Writing Microplans
 
-This document defines the standard format for microplan files. Follow this format when creating microplans for individual steps in a master plan.
+This document defines the standard format for microplan files. A microplan is a self-contained unit of work: it captures everything needed to understand, plan, and implement a single focused task.
 
 ## File Location and Naming
 
 - Store microplans in `.claude/plans/` at the repository root
 - Prefix filenames with `microplan-`
-- Use descriptive kebab-case names that reflect the step's purpose
+- Use descriptive kebab-case names that reflect the task's purpose
 - Examples: `microplan-add-auth-middleware.md`, `microplan-refactor-database-layer.md`
 
 ## Document Structure
@@ -19,23 +19,23 @@ This document defines the standard format for microplan files. Follow this forma
 Use this template when writing a microplan:
 
 ```markdown
-# Microplan: [Step Title]
+# Microplan: [Title]
 
 ## Objective
 
-[One or two sentences describing what this step accomplishes and why it matters in the broader roadmap.]
+[One or two sentences describing what this task accomplishes and why.]
 
 ## Context
 
-[Relevant background: which master plan step this corresponds to, what was completed before this step, and any constraints or decisions that affect this work.]
+[Relevant background: what motivated this work, any prior decisions or constraints that affect the approach, and anything else needed to understand the task from scratch.]
 
 ## Research Findings
 
-[Summary of what you learned from exploring the codebase. Include relevant file paths, existing patterns, dependencies, and anything that influences the implementation approach.]
+[Summary of what you learned from all research sources: codebase exploration, web searches, documentation, and any resources suggested in the delegation prompt. Include relevant details, existing patterns, dependencies, and anything that influences the implementation approach.]
 
 ## Implementation Plan
 
-1. [First sub-step with specific file paths and function names]
+1. [First sub-step with specific details]
 2. [Second sub-step]
 3. [Continue as needed]
 
@@ -49,9 +49,9 @@ Each sub-step should be small enough to implement without further decomposition.
 
 ## Writing Guidelines
 
-- **Research thoroughly** before writing the plan. Read the relevant source files, understand existing patterns, and trace through the code paths that will be affected.
-- **Be specific.** Reference exact file paths, function names, type definitions, and line ranges. A good microplan leaves no ambiguity about where changes go.
+- **Research thoroughly** before writing the plan. Use all available sources: read relevant source files, run web searches for documentation or APIs, and consult any resources suggested in the delegation prompt. Understand existing patterns and trace through the areas that will be affected.
+- **Be specific.** Reference exact names, locations, and details relevant to the domain. A good microplan leaves no ambiguity about what to do or where to do it.
 - **Ask questions for uncertainty.** If you are unsure about a design decision, an edge case, or a requirement, add it to Outstanding Questions rather than guessing. The user is the domain expert.
-- **Ask questions for consequential decisions.** Even if you have a reasonable default in mind, flag choices that are hard to reverse or that significantly shape the architecture. Let the user confirm or redirect.
-- **Focus on a single step.** Each microplan covers exactly one step from the master plan. Do not bundle unrelated work or scope-creep into adjacent steps.
+- **Ask questions for consequential decisions.** Even if you have a reasonable default in mind, flag choices that are hard to reverse or that significantly shape the approach. Let the user confirm or redirect.
+- **Focus on a single task.** Each microplan covers exactly one cohesive unit of work. Do not bundle unrelated changes or let scope creep in.
 - **Keep sub-steps concrete and ordered.** Each sub-step in the Implementation Plan should describe a single, actionable change. Order them so each builds on the previous one.
