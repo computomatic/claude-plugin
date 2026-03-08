@@ -25,11 +25,7 @@ If the user provided an argument, use it as the starting point. Ask clarifying q
 Use EnterPlanMode to create the master plan. Follow this structure:
 
 ```
-# Master Plan: [Project/Feature Name]
-
-## Goal
-
-[2-3 sentences describing the end state this roadmap achieves.]
+# [Project/Feature Name]
 
 ## Context
 

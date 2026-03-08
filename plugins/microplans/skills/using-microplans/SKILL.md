@@ -44,11 +44,7 @@ Execute the roadmap by repeating this cycle for each step:
 Use this structure when creating a master plan:
 
 ```markdown
-# Master Plan: [Project/Feature Name]
-
-## Goal
-
-[2-3 sentences describing the end state this roadmap achieves.]
+# [Project/Feature Name]
 
 ## Context
 
@@ -94,6 +90,4 @@ For each pending step, repeat this cycle:
 
 - **Master plan is the source of truth.** Do not rely on conversation history for roadmap state. Always read the master plan to determine what has been done and what comes next.
 
-- **Split oversized steps.** If a microplan's Implementation Plan has more than roughly 8-10 sub-steps, consider splitting it into two master plan steps. Update the master plan accordingly before proceeding.
-
-- **Adapt the loop.** The 8-step cycle is a default. If a step is trivial (e.g., a config change), skip the microplanner and implement directly. If a step surfaces new requirements, pause and revise the master plan before continuing.
+- **Adapt the loop.** If a step surfaces new requirements, pause and revise the master plan before continuing.
