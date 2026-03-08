@@ -2,7 +2,7 @@
 name: create-worktree
 description: Creates a new git worktree for parallel development. Use when the user wants to work on something in a separate worktree, start parallel work, or isolate changes.
 argument-hint: "[optional: branch name or description of work]"
-allowed-tools: Bash(git:*), Bash(mkdir:*), Bash(ls:*), Read, Glob, Grep
+allowed-tools: Bash(git:*), Bash(ls:*), Read, Glob, Grep
 ---
 
 # Create Worktree
@@ -57,12 +57,7 @@ Before creating, verify the target directory does not already exist with `ls`.
 
 ### Step 3: Create the Worktree
 
-1. Create the parent directory if needed:
-   ```
-   mkdir -p <parent-dir>
-   ```
-
-2. Create the worktree with:
+1. Create the worktree with:
    ```
    git worktree add <path> -b <branch-name>
    ```
@@ -70,8 +65,9 @@ Before creating, verify the target directory does not already exist with `ls`.
    ```
    git worktree add <path> <branch-name>
    ```
+   `git worktree add` creates intermediate directories automatically.
 
-3. Verify creation:
+2. Verify creation:
    ```
    git worktree list
    ```
