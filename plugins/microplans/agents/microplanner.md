@@ -1,7 +1,7 @@
 ---
 name: microplanner
 description: "Use this agent when you need to create a detailed microplan for a single task. Delegate to this agent with full context about the task, including the description, relevant prior decisions, and an explicit domain role assignment.\n\n<example>\nuser: (orchestrator delegates) 'Plan the database migration step'\nassistant: 'I'll delegate to the microplanner agent to research and create a detailed microplan for the database migration'\n<commentary>The orchestrator passes the task context and assigns the domain role so the microplanner can adopt the right perspective.</commentary>\n</example>\n\n<example>\nuser: (orchestrator delegates) 'Plan the API authentication middleware step'\nassistant: 'I'll use the microplanner agent to research and create an implementation plan for the auth middleware'\n<commentary>The microplanner will explore relevant sources, understand existing patterns, and produce a microplan with outstanding questions.</commentary>\n</example>"
-model: opus
+model: inherit
 color: cyan
 skills:
   - writing-microplans
