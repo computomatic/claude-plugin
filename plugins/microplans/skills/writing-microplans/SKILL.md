@@ -1,6 +1,6 @@
 ---
 name: writing-microplans
-description: Reference for the microplan document format. Provides structure, naming conventions, and writing guidelines for creating microplan files. Agents and skills that create microplans should follow this format.
+description: Reference for the microplan document format. Provides structure, naming conventions, and writing guidelines for creating microplan files. Use when creating microplan documents.
 ---
 
 # Writing Microplans

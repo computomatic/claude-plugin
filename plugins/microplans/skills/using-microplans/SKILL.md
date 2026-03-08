@@ -70,7 +70,7 @@ Use this structure when creating a master plan:
 
 - **Recovery from context loss.** If a session ends mid-work, start the next session by reading the master plan. The `in-progress` step tells you where to pick up. If a microplan file exists for that step, resume from there. If not, re-run the microplanner.
 
-- **Keep steps self-contained.** Each step should produce a working, committable state. Avoid steps that leave the codebase broken or that depend on uncommitted work from a future step.
+- **Keep steps self-contained.** Each step should produce a complete, working state. Avoid steps that leave things broken or that depend on unfinished work from a future step.
 
 - **Master plan is the source of truth.** Do not rely on conversation history for roadmap state. Always read the master plan file to determine what has been done and what comes next.
 
