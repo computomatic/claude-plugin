@@ -2,7 +2,6 @@
 name: create-worktree
 description: Creates a new git worktree for parallel development. Use when the user wants to work on something in a separate worktree, start parallel work, or isolate changes.
 argument-hint: "[optional: branch name or description of work]"
-disable-model-invocation: true
 allowed-tools: Bash(git:*), Bash(mkdir:*), Bash(ls:*), Read, Glob, Grep
 ---
 
