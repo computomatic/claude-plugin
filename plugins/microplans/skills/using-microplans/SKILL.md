@@ -13,10 +13,11 @@ The master plan is the source of truth for the entire roadmap. Create it using p
 
 Key properties:
 
-- Lives in `.claude/plans/` as a markdown file (e.g., `.claude/plans/master-plan-auth-overhaul.md`)
+- Created and managed via native plan mode (EnterPlanMode)
 - Each step has a status: `pending`, `in-progress`, or `done`
 - Updated after every step completes
 - Contains enough context that reading it alone is sufficient to continue work
+- Must include a full copy of the execution loop process so a fresh session can resume autonomously from the plan alone
 
 ## The Loop
 
@@ -64,6 +65,25 @@ Use this structure when creating a master plan:
 
 ### Step 3: [Title] - `pending`
 [Brief description of what this step accomplishes.]
+
+## Execution Process
+
+For each pending step, repeat this cycle:
+
+1. **Review the master plan.** Identify the next `pending` step. Mark it `in-progress`.
+2. **Delegate to the microplanner agent.** Pass full context: the step's title and description, relevant decisions from prior steps, and an explicit domain role assignment. The agent runs in an isolated context and will not read this plan.
+3. **Review the microplan and ask questions.** Present each Outstanding Question to the user one at a time.
+4. **Incorporate answers.** Delegate to a subagent to update the microplan with the user's answers.
+5. **Delegate implementation.** Send the finalized microplan to an appropriate implementation agent.
+6. **Clean up and update.** Delete the microplan file. Mark the step `done` and note outcomes.
+7. **Commit and push.**
+8. **Loop.** Return to sub-step 1. If all steps are `done`, the roadmap is complete.
+
+### Guidelines
+
+- If a session ends mid-work, read this plan to resume. The `in-progress` step is where to pick up.
+- Each step should produce a complete, working state.
+- If new requirements surface, revise this plan before continuing.
 ```
 
 ## Guidelines
@@ -72,7 +92,7 @@ Use this structure when creating a master plan:
 
 - **Keep steps self-contained.** Each step should produce a complete, working state. Avoid steps that leave things broken or that depend on unfinished work from a future step.
 
-- **Master plan is the source of truth.** Do not rely on conversation history for roadmap state. Always read the master plan file to determine what has been done and what comes next.
+- **Master plan is the source of truth.** Do not rely on conversation history for roadmap state. Always read the master plan to determine what has been done and what comes next.
 
 - **Split oversized steps.** If a microplan's Implementation Plan has more than roughly 8-10 sub-steps, consider splitting it into two master plan steps. Update the master plan accordingly before proceeding.
 
