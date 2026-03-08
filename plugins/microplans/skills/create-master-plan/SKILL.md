@@ -37,6 +37,8 @@ Follow this structure:
 ```
 # [Project/Feature Name]
 
+**Plan file:** `[absolute path to this file]`
+
 ## Context
 
 [Background information, constraints, and key decisions that apply across all steps.]
@@ -85,6 +87,8 @@ For each pending step, repeat this cycle:
 ```
 
 The master plan must be detailed enough that a fresh session with no prior context can pick up where work left off. Each step has a status: `pending`, `in-progress`, or `done`.
+
+The **Plan file** line at the top of the document must contain the absolute path to the plan file itself. This allows any agent reading the plan after context loss to locate and update it.
 
 **Critical:** The master plan must include a full copy of the execution loop process (Step 3 below) within the plan document itself. When a new session starts after context loss, the agent will read the plan file but will not have this skill loaded. The embedded loop instructions are what enable the agent to continue executing the roadmap autonomously.
 

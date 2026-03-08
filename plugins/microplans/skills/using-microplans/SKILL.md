@@ -54,6 +54,8 @@ Use this structure when creating a master plan:
 ```markdown
 # [Project/Feature Name]
 
+**Plan file:** `[absolute path to this file]`
+
 ## Context
 
 [Background information, constraints, and key decisions that apply across all steps.]
