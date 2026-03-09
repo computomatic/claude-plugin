@@ -115,19 +115,6 @@ At sprint end or major milestones:
 | [From last retro] | [Done/In Progress/Blocked] |
 ```
 
-## Triggers
-
-### Automatic Documentation Updates
-- After CAB Gate 2 approval
-- After deployment to any environment
-- When tests are added or modified
-
-### Retrospective Triggers
-- Sprint end
-- Major release
-- Significant incident
-- Request from Scrum Master
-
 ## Quality Standards
 
 - **Accuracy**: Verified against actual code/behavior
