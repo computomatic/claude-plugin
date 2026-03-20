@@ -2,7 +2,6 @@
 name: create-pr
 description: Creates a GitHub PR for current work. Handles branch creation, committing, pushing, and PR creation.
 argument-hint: "[optional: PR description]"
-disable-model-invocation: true
 allowed-tools: Bash(git:*), Bash(gh pr create:*), Read, Glob
 ---
 
