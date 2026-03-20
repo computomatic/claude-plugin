@@ -1,0 +1,4 @@
+{
+  "name": "compile-docs",
+  "description": "Multi-agent documentation compiler: discovers, inventories, plans, and writes reference documentation from CLI tools, APIs, and other systems"
+}

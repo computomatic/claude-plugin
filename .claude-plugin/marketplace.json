@@ -18,6 +18,11 @@
       "name": "project-blog",
       "description": "A system for recording and leveraging a project-specific knowledge base.",
       "source": "./plugins/project-blog"
+    },
+    {
+      "name": "compile-docs",
+      "description": "Multi-agent documentation compiler: discovers, inventories, plans, and writes reference documentation from CLI tools, APIs, and other systems",
+      "source": "./plugins/compile-docs"
     }
   ]
 }
