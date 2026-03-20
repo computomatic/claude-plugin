@@ -6,6 +6,14 @@ argument-hint: "[tool or system to document]"
 
 Orchestrates a multi-phase pipeline that discovers, inventories, plans, and compiles documentation for a target system using specialized subagents.
 
+## Orchestration Rules
+
+- Never write documentation directly. All documentation authoring is delegated to `doc-author`.
+- Delegate research tasks to the microplanner or reference agents as appropriate.
+- Keep context lean. Summarize subagent results rather than reproducing their full output.
+- Track progress via the master plan. Update step statuses as work is completed, blocked, or in progress.
+- Minimize questions and proceed autonomously. Only escalate when a decision cannot be resolved from available context.
+
 ## Phase 1: Discover Reference Structure
 
 - Dispatch `reference-scout` with all available info about the target (name, URLs, install location, etc.)
