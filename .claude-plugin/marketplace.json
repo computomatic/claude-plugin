@@ -18,11 +18,6 @@
       "name": "project-blog",
       "description": "A system for recording and leveraging a project-specific knowledge base.",
       "source": "./plugins/project-blog"
-    },
-    {
-      "name": "microplans",
-      "description": "Structured microplan pattern for scaling code generation over multi-step roadmaps",
-      "source": "./plugins/microplans"
     }
   ]
 }
