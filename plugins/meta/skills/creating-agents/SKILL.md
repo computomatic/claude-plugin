@@ -2,7 +2,6 @@
 name: creating-agents
 description: Creates new Claude Code agents (subagents) with best practices. Use when the user wants to create an agent, add a custom subagent, or define a specialized AI assistant for their project.
 argument-hint: "[agent-name] [optional: description]"
-disable-model-invocation: true
 ---
 
 # Create Agent

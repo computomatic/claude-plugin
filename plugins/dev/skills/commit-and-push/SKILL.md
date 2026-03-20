@@ -2,7 +2,6 @@
 name: commit-and-push
 allowed-tools: Bash(git add:*), Bash(git commit:*), Bash(git push:*)
 description: Commit and push changes
-disable-model-invocation: true
 ---
 
 ## Git State
