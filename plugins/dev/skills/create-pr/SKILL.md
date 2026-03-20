@@ -93,3 +93,4 @@ gh pr create --title "..." --body "..."
 - Focus on what changed and why, not how
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
+- Never add a signature line like "Generated with Claude Code" or similar to the PR description
