@@ -46,7 +46,7 @@ Orchestrates a multi-phase pipeline that discovers, inventories, plans, and comp
   - **Style guide path:** `.claude/skills/compile-docs/style-guide.md`
   - **Agent roster:** microplanner (planning), doc-author (writing), doc-editor (review)
   - **Step list:** dynamically generated at runtime from the hierarchy plan's File Mapping table
-    - One step per File Mapping entry (1:1 mapping)
+    - **One step per inventory entry.** The roadmap must contain exactly as many steps as there are rows in the File Mapping table. Do NOT batch, combine, or group multiple entries into a single step, even when they share an output file. Hundreds of steps is expected and correct for large inventories.
     - Penultimate step: editorial review by `doc-editor`, issues written to `<tmpdir>/review-issues.md`
     - Final step: `doc-author` fixes based on review issues
   - **Autonomous execution guidance:** the user is not a domain expert; minimize questions; continue autonomously when no outstanding questions exist
