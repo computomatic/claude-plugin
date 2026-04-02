@@ -43,9 +43,10 @@ If the user provided an argument, use it to determine or influence the branch na
 
 ### Step 2: Determine the Worktree Location
 
-Determine the parent directory for the worktree:
+Determine the parent directory for the worktree using the first matching condition:
 
-- **If already in a worktree:** Place the new worktree in the same parent directory as the current worktree (a sibling directory).
+- **If in the sibling worktree layout:** The worktree list (from Current State above) shows multiple worktrees sharing a common parent directory, or the current git root's basename matches the current branch (e.g., directory named `main` on branch `main`). Place the new worktree as a sibling in that parent directory.
+- **If already in a linked worktree:** Place the new worktree in the same parent directory as the current worktree (a sibling directory).
 - **If in the primary clone directory:** Place it at `<repo-parent>/worktrees/<dir-name>`, where `<repo-parent>` is the directory containing the repository root.
 
 **Directory naming rules:**
