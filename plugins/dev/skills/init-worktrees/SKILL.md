@@ -48,15 +48,14 @@ If the current directory is a linked worktree (`.git` is a file), resolve the ma
 ### Step 2: Confirm with User
 
 Present the detected scenario and the planned directory moves. For scenarios 2 and 3, list every move that will happen. Warn about:
-- The current shell's working directory becoming invalid after the move
-- IDE/editor workspace paths needing manual update
+- IDE/editor workspace paths needing manual update after the restructure
 - Submodules (if `.gitmodules` exists) potentially needing re-initialization
 
 Ask the user to confirm before proceeding. For scenario 1, just report and stop.
 
 ### Step 3: Execute (Simple Clone)
 
-Use absolute paths for all operations -- CWD becomes invalid after the first `mv`.
+First, `cd` to the parent directory of the repo so that CWD remains valid throughout the moves.
 
 ```bash
 REPO_DIR=$(git rev-parse --show-toplevel)
@@ -64,9 +63,10 @@ REPO_NAME=$(basename "$REPO_DIR")
 PARENT_DIR=$(dirname "$REPO_DIR")
 TEMP_NAME="${REPO_NAME}__init_worktrees_tmp"
 
-mv "$REPO_DIR" "$PARENT_DIR/$TEMP_NAME"
-mkdir -p "$PARENT_DIR/$REPO_NAME"
-mv "$PARENT_DIR/$TEMP_NAME" "$PARENT_DIR/$REPO_NAME/main"
+cd "$PARENT_DIR"
+mv "$REPO_NAME" "$TEMP_NAME"
+mkdir -p "$REPO_NAME"
+mv "$TEMP_NAME" "$REPO_NAME/main"
 ```
 
 No internal git references need updating since there are no linked worktrees. Skip to Step 5.
@@ -120,7 +120,7 @@ Tell the user:
 ## Guidelines
 
 - Always confirm with the user before making changes.
-- Use absolute paths for all operations after the first move.
+- `cd` to the parent directory before starting moves so CWD stays valid throughout.
 - If any `mv` or `git worktree move` command fails, stop and report the error. Do not attempt partial rollback.
 - Directory names for linked worktrees use the final segment of the branch name. Append a numeric suffix on collision.
 - Never run from inside a linked worktree -- resolve to the main worktree first.
