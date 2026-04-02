@@ -53,7 +53,7 @@ Present the detected scenario and the planned directory moves. For scenarios 2 a
 
 Ask the user to confirm before proceeding. For scenario 1, just report and stop.
 
-### Step 3: Execute (Simple Clone)
+### Step 3: Execute
 
 First, `cd` to the parent directory of the repo so that CWD remains valid throughout the moves.
 
@@ -69,15 +69,11 @@ mkdir -p "$REPO_NAME"
 mv "$TEMP_NAME" "$REPO_NAME/main"
 ```
 
-No internal git references need updating since there are no linked worktrees. Skip to Step 5.
+**If there are linked worktrees** (scenario 3), continue with these additional phases:
 
-### Step 4: Execute (Clone with External Worktrees)
+**Phase A: Record worktree info.** Before the moves above, parse `git worktree list --porcelain` to collect each linked worktree's absolute path and branch.
 
-**Phase A: Record worktree info.** Parse `git worktree list --porcelain` to collect each worktree's absolute path and branch. The first entry is always the main worktree.
-
-**Phase B: Move the main worktree.** Same as Step 3 -- move via temp name into `<parent>/<repo-name>/main`.
-
-**Phase C: Fix linked worktree references.** After moving main, each linked worktree's `.git` file contains a `gitdir:` path pointing to the old main location. Update each one:
+**Phase B: Fix linked worktree references.** After moving main, each linked worktree's `.git` file contains a `gitdir:` path pointing to the old main location. Update each one:
 
 ```bash
 # For each linked worktree at $LINKED_PATH:
@@ -86,7 +82,7 @@ NEW_GITDIR=$(echo "$OLD_GITDIR" | sed "s|$OLD_REPO_DIR/.git|$NEW_MAIN_DIR/.git|"
 echo "gitdir: $NEW_GITDIR" > "$LINKED_PATH/.git"
 ```
 
-**Phase D: Move linked worktrees.** From the new main directory, use `git worktree move` for each linked worktree:
+**Phase C: Move linked worktrees.** From the new main directory, use `git worktree move` for each linked worktree:
 
 ```bash
 cd "$NEW_MAIN_DIR"
@@ -95,9 +91,9 @@ git worktree move "$OLD_LINKED_PATH" "$NEW_PARENT/$DIRNAME"
 
 Directory names use the final segment of the branch name (e.g., `feat/login` becomes `login`). Append a numeric suffix if the name collides with an existing directory.
 
-**Phase E: Clean up.** Remove empty directories left behind by the moves using `rmdir` (non-recursive, safe to fail).
+**Phase D: Clean up.** Remove empty directories left behind by the moves using `rmdir` (non-recursive, safe to fail).
 
-### Step 5: Verify
+### Step 4: Verify
 
 From the new main directory:
 
@@ -109,7 +105,7 @@ git status
 
 For each linked worktree, verify `git status` works from within it.
 
-### Step 6: Report
+### Step 5: Report
 
 Tell the user:
 - The new directory structure (list all worktree paths)
