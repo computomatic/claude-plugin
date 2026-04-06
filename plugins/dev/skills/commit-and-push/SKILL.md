@@ -13,7 +13,7 @@ Changes:
 !`git diff`
 
 Recent commits:
-!`git log --oneline -5`
+!`git log --oneline -5 2>/dev/null || echo "(no commits yet)"`
 
 ## Task
 
