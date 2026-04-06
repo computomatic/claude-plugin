@@ -13,7 +13,7 @@ Changes:
 !`git diff`
 
 Recent commits:
-!`git log --oneline -5`
+!`if git rev-parse --verify HEAD >/dev/null 2>&1; then git log --oneline -5; else echo "(no commits yet)"; fi`
 
 ## Task
 

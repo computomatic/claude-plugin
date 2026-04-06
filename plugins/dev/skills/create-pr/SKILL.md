@@ -21,7 +21,7 @@ Current branch:
 !`git branch --show-current`
 
 Recent commits:
-!`git log --oneline -5 2>/dev/null || echo "(no commits yet)"`
+!`if git rev-parse --verify HEAD >/dev/null 2>&1; then git log --oneline -5; else echo "(no commits yet)"; fi`
 
 ## Workflow
 
