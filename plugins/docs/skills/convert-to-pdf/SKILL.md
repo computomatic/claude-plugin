@@ -16,8 +16,10 @@ Converts one or more markdown documents to PDF, following any direction the user
 2. Convert with pandoc using typst as the PDF engine:
 
    ```
-   pandoc <input.md> -o <output.pdf> --pdf-engine=typst
+   pandoc <input.md> -f markdown-citations -o <output.pdf> --pdf-engine=typst
    ```
+
+   Always disable the `citations` extension (`-f markdown-citations`). Otherwise pandoc treats `@word` tokens, such as scoped npm package names like `@hono/node-server`, as citation references and typst fails with "the document does not contain a bibliography".
 
    By default, write the PDF next to the input file with the same basename. Honor any output path the user specifies.
 
@@ -29,7 +31,7 @@ Converts one or more markdown documents to PDF, following any direction the user
 4. For styling beyond what pandoc variables cover (custom fonts, headers/footers, colors, layout), generate an intermediate typst file, edit it, then compile:
 
    ```
-   pandoc <input.md> -o <doc.typ> --standalone
+   pandoc <input.md> -f markdown-citations -o <doc.typ> --standalone
    typst compile <doc.typ> <output.pdf>
    ```
 
