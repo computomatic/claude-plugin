@@ -1,4 +1,5 @@
 {
   "name": "docs",
-  "description": "Document tools: convert markdown docs to PDF"
+  "description": "Document tools: convert markdown docs to PDF",
+  "version": "1.0.0"
 }
