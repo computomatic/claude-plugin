@@ -6,19 +6,6 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Claude Code plugin marketplace (`computomatic/claude-plugin`) containing reusable plugins with agents, skills, and workflows. Users install plugins via `/plugin marketplace add computomatic/claude-plugin` and then `/plugin install <plugin-name>@computomatic`.
 
-## Repository Structure
-
-```
-.claude-plugin/marketplace.json   # Marketplace manifest listing all plugins
-plugins/
-  <plugin-name>/
-    .claude-plugin/plugin.json    # Plugin metadata (name, description, version)
-    agents/<agent-name>.md        # Agent definitions (markdown with YAML frontmatter)
-    skills/<skill-name>/SKILL.md  # Skill definitions (markdown with YAML frontmatter)
-```
-
-There are currently four plugins: `dev` (development workflow tools), `meta` (plugin authoring tools), `project-blog` (project knowledge base), and `compile-docs` (documentation compiler).
-
 ## Versioning
 
 Every PR must include an appropriate semver bump in the `plugin.json` of each plugin it modifies, reassessed when additional commits are pushed (e.g., escalating from patch to minor if scope grows). The version lives only in `plugin.json`; marketplace.json entries do not carry versions.
