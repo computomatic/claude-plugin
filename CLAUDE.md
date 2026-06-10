@@ -6,18 +6,17 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A Claude Code plugin marketplace (`computomatic/claude-plugin`) containing reusable plugins with agents, skills, and workflows. Users install plugins via `/plugin marketplace add computomatic/claude-plugin` and then `/plugin install <plugin-name>@computomatic`.
 
-## Repository Structure
+## Versioning
 
-```
-.claude-plugin/marketplace.json   # Marketplace manifest listing all plugins
-plugins/
-  <plugin-name>/
-    .claude-plugin/plugin.json    # Plugin metadata (name, description)
-    agents/<agent-name>.md        # Agent definitions (markdown with YAML frontmatter)
-    skills/<skill-name>/SKILL.md  # Skill definitions (markdown with YAML frontmatter)
-```
+Every PR must include an appropriate semver bump in the `plugin.json` of each plugin it modifies, reassessed when additional commits are pushed (e.g., escalating from patch to minor if scope grows). The version lives only in `plugin.json`; marketplace.json entries do not carry versions.
 
-There are currently three plugins: `dev` (development workflow tools), `meta` (plugin authoring tools), and `project-blog` (project knowledge base).
+These plugins ship agent prompts, skill definitions, and templates. There is no runtime API or code contract, so semver applies to the *behavior and interface experienced by users and orchestrating agents*.
+
+**Patch** (0.0.x): Changes that refine existing behavior without altering what the agents or skills do from a user's perspective. Examples: rewording instructions for clarity, fixing typos, tightening or loosening existing guidance, adding internal guardrails, adjusting prompt structure that does not change outputs in a user-visible way.
+
+**Minor** (0.x.0): Changes that add new capabilities or meaningfully change what users or orchestrating agents can do. Examples: adding a new skill or agent, introducing a new workflow step in an existing skill, changing file placement conventions, renaming or reorganizing the directory structure in a way that requires users to update references.
+
+**Major** (x.0.0): Changes that break existing workflows or require users to change how they invoke or interact with the plugin. Examples: removing a skill or agent, renaming a skill (breaking `/skill-name` invocations), removing or renaming conventions that external tooling or user workflows depend on.
 
 ## Authoring Conventions
 
@@ -55,7 +54,7 @@ The markdown body after frontmatter is the agent's system prompt.
 
 ### Adding a New Plugin
 
-1. Create `plugins/<name>/.claude-plugin/plugin.json` with `name` and `description`
+1. Create `plugins/<name>/.claude-plugin/plugin.json` with `name`, `description`, and `version` (start at `1.0.0`)
 2. Add the plugin entry to `.claude-plugin/marketplace.json`
 3. Add agents and/or skills following the conventions above
 

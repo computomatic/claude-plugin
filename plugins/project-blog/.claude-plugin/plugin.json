@@ -1,4 +1,5 @@
 {
   "name": "project-blog",
+  "version": "1.0.0",
   "description": "A system for recording and leveraging a project-specific knowledge base."
 }
