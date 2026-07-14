@@ -16,10 +16,12 @@ Converts one or more markdown documents to PDF, following any direction the user
 2. Convert with pandoc using typst as the PDF engine:
 
    ```
-   pandoc <input.md> -f markdown-citations -o <output.pdf> --pdf-engine=typst
+   pandoc <input.md> -f markdown-citations+gfm_auto_identifiers -o <output.pdf> --pdf-engine=typst
    ```
 
    Always disable the `citations` extension (`-f markdown-citations`). Otherwise pandoc treats `@word` tokens, such as scoped npm package names like `@hono/node-server`, as citation references and typst fails with "the document does not contain a bibliography".
+
+   Always enable `gfm_auto_identifiers` (`+gfm_auto_identifiers`). Markdown docs often carry internal table-of-contents links written for GitHub's heading-anchor algorithm, which strips dots from IDs (a heading `foo.md` anchors as `#foomd`). Pandoc's default keeps the dots, so those links point at labels that do not exist and typst fails with "label `<...>` does not exist in the document". Enabling `gfm_auto_identifiers` makes pandoc generate GitHub-style heading IDs so the links resolve. It is harmless for docs without internal links, so keep it on by default.
 
    By default, write the PDF next to the input file with the same basename. Honor any output path the user specifies.
 
@@ -31,7 +33,7 @@ Converts one or more markdown documents to PDF, following any direction the user
 4. For styling beyond what pandoc variables cover (custom fonts, headers/footers, colors, layout), generate an intermediate typst file, edit it, then compile:
 
    ```
-   pandoc <input.md> -f markdown-citations -o <doc.typ> --standalone
+   pandoc <input.md> -f markdown-citations+gfm_auto_identifiers -o <doc.typ> --standalone
    typst compile <doc.typ> <output.pdf>
    ```
 
