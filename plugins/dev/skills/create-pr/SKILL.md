@@ -82,6 +82,21 @@ Create the PR using `gh pr create`:
 
 **If no PR template was found:** Write a plain text body of 1-2 paragraphs describing what and why. No headers, no "Test Plan" section, no markdown formatting in the body.
 
+**Line breaks:** GitHub renders every newline inside a paragraph as a visible line break, unlike most markdown renderers. Never wrap prose to a column width. Write each paragraph, list item, table row, and heading as one continuous line however long it runs, and separate blocks with a blank line. This applies to the template case and the plain prose case alike.
+
+Wrong, because the newline before `entry` renders as a break mid-sentence:
+
+```
+Closes #834. Give the service a way to remove a scalar
+entry. Delete is table stakes for a key-value API.
+```
+
+Right:
+
+```
+Closes #834. Give the service a way to remove a scalar entry. Delete is table stakes for a key-value API.
+```
+
 ```
 gh pr create --title "..." --body "..."
 ```
@@ -90,6 +105,7 @@ gh pr create --title "..." --body "..."
 
 - When a PR template is found, respect its structure and fill in all sections
 - When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections
+- Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
 - Focus on what changed and why, not how
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
