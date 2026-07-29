@@ -1,5 +1,5 @@
 {
   "name": "dev",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Development workflow: lead developer agent, browser testing, PR creation, and commit management"
 }
