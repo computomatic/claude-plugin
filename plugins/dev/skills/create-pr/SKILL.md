@@ -121,7 +121,7 @@ A description has to stand on its own. Someone scanning a PR list, or reading th
 
 - Implementation mechanics: which internal helper was reused, which call site was threaded through, which existing structure was borrowed.
 - Which files changed, and which tests were added.
-- Inventories of the change: a list of the sections, rules, options, or components it contains. If a sentence reaches a colon and then lists what the diff holds, cut it at the colon.
+- Inventories of the change: a list of the sections, rules, options, or components it contains.
 - What did not change. Never write that a file, a config, or a consumer "needed no change".
 - Your own process: how you verified the work, what you tried first, what you double-checked, how you arrived at the change, and anything you measured while deciding.
 - Conclusions the reader reaches unaided. State the fact and stop; do not append the inference that follows from it.
@@ -133,7 +133,6 @@ A description has to stand on its own. Someone scanning a PR list, or reading th
 - Why the change was needed, and what it unblocked.
 - Why a substantial decision was made, and why the alternatives were rejected.
 - Anywhere the implementation departs from its spec, ticket, or design doc, and the reasoning that justifies the departure.
-- Debt this change creates or leaves behind, with the specific follow-up it implies.
 
 Conciseness comes from deleting whole passages, not from shortening the reasoning. A passage recording a hard judgment call earns its length even if it ends up the longest thing in the description. A passage narrating what the diff already shows earns none.
 
