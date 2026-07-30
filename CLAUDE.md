@@ -18,6 +18,12 @@ These plugins ship agent prompts, skill definitions, and templates. There is no 
 
 **Major** (x.0.0): Changes that break existing workflows or require users to change how they invoke or interact with the plugin. Examples: removing a skill or agent, renaming a skill (breaking `/skill-name` invocations), removing or renaming conventions that external tooling or user workflows depend on.
 
+## Commit and PR Titles
+
+Write PR titles and commit subjects as a capitalized imperative sentence, matching the existing history: `Add init-worktrees skill`, `Handle empty repo in commit-and-push and create-pr skills`. PRs here are squash-merged, so the PR title becomes the commit subject on `main` and the two should agree.
+
+Never use a conventional-commit prefix such as `docs(create-pr):`, `feat:`, or `chore:`. This repository does not use them, and the scope in parentheses only repeats what the changed paths already show. The `docs` type fits especially badly: a SKILL.md is the implementation of a plugin's behaviour, not documentation describing it.
+
 ## Authoring Conventions
 
 ### Skills (SKILL.md)
