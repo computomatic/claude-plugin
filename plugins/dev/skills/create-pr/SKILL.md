@@ -107,7 +107,7 @@ A description has to stand on its own. Someone scanning a PR list, or reading th
 
 **Pitch the approach at the highest level that still conveys the change.** Name specific code only when the named thing *is* the change, as with a new method callers will invoke, a renamed setting, or an altered endpoint or payload. When the change is internal, say what now behaves differently and leave the symbols out. Which function moved, which helper it borrowed, and which call sites were rethreaded are the diff's business.
 
-**Put reasoning with the decision, not with the approach.** Where the template has a section for decisions, rationale, or tradeoffs, that is where "why this and not the obvious alternative" belongs, and the approach section stays a plain statement of what was done. Lead each decision with its claim in bold so the section can be skimmed. With no such section, or with no template at all, keep the approach and the reasoning in separate paragraphs, approach first, and let a change with real decisions to record run past the usual 1-2 paragraph norm rather than drop them.
+**Put reasoning with the decision, not with the approach.** Where the template has a section for decisions, rationale, or tradeoffs, that is where "why this and not the obvious alternative" belongs, and the approach section stays a plain statement of what was done. With no such section, or with no template at all, keep the approach and the reasoning in separate paragraphs, approach first, and let a change with real decisions to record run past the usual 1-2 paragraph norm rather than drop them.
 
 **Delete outright:**
 
@@ -155,10 +155,10 @@ Adds `retry()` to `HttpClient`. Requests retry up to three times on 5xx and on c
 
 ## Architectural Decisions
 
-**429 is deliberately not retried.** A rate limit needs the delay the server dictates in `Retry-After`, and honouring that inside a generic backoff loop would stall the caller for an unbounded period with no way to observe it. Callers that care about rate limits handle 429 themselves, which is what both existing callers already do.
+429 is deliberately not retried. A rate limit needs the delay the server dictates in `Retry-After`, and honouring that inside a generic backoff loop would stall the caller for an unbounded period with no way to observe it. Callers that care about rate limits handle 429 themselves, which is what both existing callers already do.
 ```
 
-Three things happened. The approach collapsed to one paragraph, keeping the retry policy and the timeout interaction and dropping the borrowed helper, the signal plumbing, and the list of things that needed no change. The test inventory, the verification narrative, and the bookkeeping are gone. The rate-limit rationale moved out of the approach and into the decisions section, where it got a bold claim to lead it and grew rather than shrank, because it is the only part of the description the diff cannot show.
+Three things happened. The approach collapsed to one paragraph, keeping the retry policy and the timeout interaction and dropping the borrowed helper, the signal plumbing, and the list of things that needed no change. The test inventory, the verification narrative, and the bookkeeping are gone. The rate-limit rationale moved out of the approach and into the decisions section, where it grew rather than shrank, because it is the only part of the description the diff cannot show.
 
 `retry()` is named because the new method is the change: callers will invoke it by that name.
 
@@ -184,7 +184,7 @@ The second version is barely shorter. The difference is altitude: the first desc
 - When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections, extending only for reasoning that must not be compressed
 - Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
 - State the approach so the description stands alone in a PR list or a squash-merge message, at the highest level that still conveys the change; name code only when the named thing is the change itself
-- Put "why not" reasoning in the template's decisions section, led by its claim in bold; keep the approach section a plain statement of what was done
+- Put "why not" reasoning in the template's decisions section; keep the approach section a plain statement of what was done
 - Cut whole passages rather than compressing reasoning; the paragraph explaining a hard decision is allowed to be the longest one
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
