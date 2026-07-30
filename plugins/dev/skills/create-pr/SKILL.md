@@ -105,26 +105,32 @@ gh pr create --title "..." --body "..."
 
 A description has to stand on its own. Someone scanning a PR list, or reading the squash-merge commit later, should understand what the change does and why without opening the diff. So state the approach, and leave the mechanics that implement it to the diff: "how we fixed the problem", not "how we implemented the fix".
 
+**The shape is fixed:** what the change does and why it is needed, then the decisions a reviewer has to weigh, then anything you want them to check. A template's sections map onto that shape; with no template it is paragraphs in that order. Nothing else has a place in a description.
+
 **Pitch the approach at the highest level that still conveys the change.** Name specific code only when the named thing *is* the change, as with a new method callers will invoke, a renamed setting, or an altered endpoint or payload. When the change is internal, say what now behaves differently and leave the symbols out. Which function moved, which helper it borrowed, and which call sites were rethreaded are the diff's business.
 
 **Put reasoning with the decision, not with the approach.** Where the template has a section for decisions, rationale, or tradeoffs, that is where "why this and not the obvious alternative" belongs, and the approach section stays a plain statement of what was done. With no such section, or with no template at all, keep the approach and the reasoning in separate paragraphs, approach first, and let a change with real decisions to record run past the usual 1-2 paragraph norm rather than drop them.
+
+**Length tracks decisions, not diff size.** Not the number of files or rules touched, not how long the change took, not how much thought went into it. One paragraph per decision a reviewer has to weigh. A change that touches twenty files and settles one debatable question gets one paragraph of reasoning.
 
 **Delete outright:**
 
 - Implementation mechanics: which internal helper was reused, which call site was threaded through, which existing structure was borrowed.
 - Which files changed, and which tests were added.
+- Inventories of the change: a list of the sections, rules, options, or components it contains. If a sentence reaches a colon and then lists what the diff holds, cut it at the colon.
 - What did not change. Never write that a file, a config, or a consumer "needed no change".
-- Your own process: how you verified the work, what you tried first, what you double-checked.
+- Your own process: how you verified the work, what you tried first, what you double-checked, how you arrived at the change, and anything you measured while deciding.
 - Conclusions the reader reaches unaided. State the fact and stop; do not append the inference that follows from it.
 - Pre-existing conditions this change neither introduces nor touches, and advice aimed at future unrelated work.
 - Bookkeeping: version bumps, changelog entries, status flips, file moves.
 
-**Never compress:**
+**Never compress** what a reader could still get wrong after reading the diff. Reasoning survives where a reviewer could otherwise reverse the decision, misuse it, or re-open it. Reasoning about how the change was drafted, its structure, its wording, its examples, the scope it settled on, does not survive; the diff argues for itself.
 
 - Why the change is needed, and what it unblocks.
 - Why a decision was made, and why the alternatives were rejected.
 - Anywhere the implementation departs from its spec, ticket, or design doc, and the reasoning that justifies the departure.
 - Debt this change creates or leaves behind, with the specific follow-up someone must do.
+- Anything you want the reviewer to check or decide, which goes last.
 
 Conciseness comes from deleting whole passages, not from shortening the reasoning. A passage recording a hard judgment call earns its length even if it ends up the longest thing in the description. A passage narrating what the diff already shows earns none.
 
@@ -181,11 +187,14 @@ The second version is barely shorter. The difference is altitude: the first desc
 ## Guidelines
 
 - When a PR template is found, respect its structure and fill in all sections
-- When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections, extending only for reasoning that must not be compressed
+- When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections, extending only for a decision a reviewer has to weigh
 - Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
+- Follow the fixed shape: what and why, then decisions to weigh, then anything you want checked; nothing else belongs
 - State the approach so the description stands alone in a PR list or a squash-merge message, at the highest level that still conveys the change; name code only when the named thing is the change itself
 - Put "why not" reasoning in the template's decisions section; keep the approach section a plain statement of what was done
 - Cut whole passages rather than compressing reasoning; the paragraph explaining a hard decision is allowed to be the longest one
+- Let length track the number of contestable decisions, never the size of the diff or the effort behind it
+- Never inventory the change; if a sentence lists what the diff contains, cut it at the colon
 - If multiple unrelated changes exist, only include those relevant to the conversation or argument
 - Always push before creating the PR
 - Never add a signature line like "Generated with Claude Code" or similar to the PR description
