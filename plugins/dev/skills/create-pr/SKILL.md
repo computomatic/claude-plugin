@@ -105,7 +105,7 @@ gh pr create --title "..." --body "..."
 
 ## Guidelines
 
-- Titles are capitalized imperative sentences with no prefix or tag attached, unless the repository's own history uses them
+- Titles are capitalized imperative sentences with no prefix or tag attached, unless the repository's own history uses them consistently
 - When a PR template is found, respect its structure and fill in all sections
 - When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections
 - Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
