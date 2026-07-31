@@ -49,7 +49,7 @@ If uncertain about which files belong, ask the user.
 ### Step 3: Stage and Commit
 
 1. Stage only the relevant files with `git add`
-2. Write a clear, concise commit message
+2. Write a clear, concise commit message. The subject line follows the title conventions in Step 6
 3. Commit the changes
 
 ### Step 4: Push to Remote
@@ -74,9 +74,11 @@ If `.github/PULL_REQUEST_TEMPLATE/` contains multiple templates, pick the one mo
 
 ### Step 6: Create the PR
 
-Create the PR using `gh pr create`:
-- Title: Clear, imperative summary
-- If argument was provided, use it to inform the description
+Create the PR using `gh pr create`. If an argument was provided, use it to inform the description.
+
+**Title:** Write a capitalized imperative sentence saying what the change does, such as `Add init-worktrees skill` or `Handle empty repo in create-pr`. Keep it to that sentence alone, with no conventional-commit prefix and no equivalent tag bolted to either end. Labels of that kind repeat what the changed paths already show, or classify the change in a way that is easy to get wrong. The one exception is a repository whose own history uses them, which the recent commits listed above will show; there, match the convention already in use.
+
+Where the repository squash-merges, the PR title becomes the commit subject on the default branch, so the title and the commit subject from Step 3 should agree.
 
 **If a PR template was found:** Use the template's structure for the body, filling in each section based on the conversation context and the changes being submitted.
 
@@ -188,6 +190,7 @@ The second version is barely shorter. The difference is altitude: the first desc
 
 ## Guidelines
 
+- Titles are capitalized imperative sentences with no prefix or tag attached, unless the repository's own history uses them consistently
 - When a PR template is found, respect its structure and fill in all sections
 - When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections, extending only to record a substantial decision
 - Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
