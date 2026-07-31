@@ -76,7 +76,7 @@ If `.github/PULL_REQUEST_TEMPLATE/` contains multiple templates, pick the one mo
 
 Create the PR using `gh pr create`. If an argument was provided, use it to inform the description.
 
-**Title:** Write a capitalized imperative sentence saying what the change does, such as `Add init-worktrees skill` or `Handle empty repo in create-pr`. Do not reach for a conventional-commit prefix like `feat:`, `chore:`, or `docs(create-pr):`. The parenthesised scope only repeats what the changed paths already show, and the type is frequently wrong: a prompt, skill definition, or config file is the implementation of a behavior rather than documentation describing it, so `docs` gets attached to changes that are nothing of the kind. The one exception is a repository whose own history uses prefixes, which the recent commits listed above will show; there, match the convention already in use.
+**Title:** Write a capitalized imperative sentence saying what the change does, such as `Add init-worktrees skill` or `Handle empty repo in create-pr`. Keep it to that sentence alone, with no conventional-commit prefix and no equivalent tag bolted to either end. Labels of that kind repeat what the changed paths already show, or classify the change in a way that is easy to get wrong. The one exception is a repository whose own history uses them, which the recent commits listed above will show; there, match the convention already in use.
 
 Where the repository squash-merges, the PR title becomes the commit subject on the default branch, so the title and the commit subject from Step 3 should agree.
 
@@ -105,7 +105,7 @@ gh pr create --title "..." --body "..."
 
 ## Guidelines
 
-- Titles are capitalized imperative sentences, not conventional-commit prefixes, unless the repository's own history uses prefixes
+- Titles are capitalized imperative sentences with no prefix or tag attached, unless the repository's own history uses them
 - When a PR template is found, respect its structure and fill in all sections
 - When no template is found, keep descriptions as plain prose (1-2 paragraphs) with no headers or sections
 - Never break a line in the middle of a paragraph or list item; blank lines between blocks are the only line breaks GitHub renders as intended
