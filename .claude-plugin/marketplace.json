@@ -28,6 +28,11 @@
       "name": "docs",
       "description": "Document tools: convert markdown docs to PDF",
       "source": "./plugins/docs"
+    },
+    {
+      "name": "apm",
+      "description": "Agent Package Manager (APM) tools: use the apm CLI, initialize APM marketplaces, author APM skills, agents, and instructions, and package artifacts",
+      "source": "./plugins/apm"
     }
   ]
 }
