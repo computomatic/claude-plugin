@@ -1,0 +1,5 @@
+{
+  "name": "apm",
+  "description": "Agent Package Manager (APM) tools: use the apm CLI, initialize APM marketplaces, author APM skills, agents, and instructions, and package artifacts",
+  "version": "1.0.0"
+}
